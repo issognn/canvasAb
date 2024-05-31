@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bosque</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0; /* Fondo gris claro */
+        }
+        #lienzo {
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="lienzo" width="500" height="300">
+        <p>Tu navegador no soporta CANVAS. Deberías actualizar tu navegador</p>
+    </canvas>
+    <script type="text/javascript">
+        var hoja = document.getElementById("lienzo");
+        var dibujo = hoja.getContext("2d");
+
+        // Fondo
+        dibujo.fillStyle = "#B5CDFF"; // Cielo azul claro
+        dibujo.fillRect(0, 0, 500, 300);
+
+        // Suelo
+        dibujo.fillStyle = "#7CFC00"; // Verde claro
+        dibujo.fillRect(0, 250, 500, 50);
+
+        // Función para dibujar un árbol
+        function dibujarArbol(x, y) {
+            // Tronco (centrado en x)
+            dibujo.fillStyle = "#8B4513"; // Marrón
+            dibujo.fillRect(x - 10, y, 20, 60); // Restar 10 a x para centrar el tronco
+
+            // Hojas (centradas respecto al tronco)
+            dibujo.fillStyle = "#228B22"; // Verde
+            dibujo.beginPath();
+            dibujo.moveTo(x - 40, y); // Restar 40 a x para centrar las hojas
+            dibujo.lineTo(x, y - 70); // Punto superior central
+            dibujo.lineTo(x + 40, y); // Sumar 40 a x para centrar las hojas
+            dibujo.closePath();
+            dibujo.fill();
+
+            dibujo.beginPath();
+            dibujo.moveTo(x - 35, y - 20); // Restar 35 a x para centrar las hojas
+            dibujo.lineTo(x, y - 90); // Punto superior central
+            dibujo.lineTo(x + 35, y - 20); // Sumar 35 a x para centrar las hojas
+            dibujo.closePath();
+            dibujo.fill();
+        }
+
+        // Dibujar varios árboles
+        dibujarArbol(50, 200);
+        dibujarArbol(150, 220);
+        dibujarArbol(250, 200);
+        dibujarArbol(350, 220);
+        dibujarArbol(450, 200);
+    </script>
+</body>
+</html>
